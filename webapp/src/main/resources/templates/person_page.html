@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Application - Person</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" th:src="@{/js/angular.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/webapp.css}" />
+</head>
+
+<body ng-app="webappPerson">
+	<div class="container-fluid" ng-controller="personController">
+
+		<div class="webapp-menu">
+			<a class="webapp-menu-item" href="/webapp/home/">Home</a>
+		</div>
+		<hr/>
+		
+		<div style="width: 250px;">
+		<form class="simple-form" method="post" action="http://localhost:8080/webapp/persons/">
+		
+			<input type="hidden" name="id" value="" />
+			
+			<table class="table">
+				<tr>
+					<td><label>Name:</label></td>
+					<td><input name="name" type="text" /></td>
+				</tr> 
+				<tr>
+					<td><label>Address:</label></td>
+					<td><input name="address" type="text" /></td>
+				</tr>
+				<tr>
+					<td><label>Phone</label></td>
+					<td><input name="phone" type="text" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: right;"><input type="button" value="Reset" onclick="reset()" />&nbsp;<input type="submit" value="Submit" /></td>
+				</tr>
+			</table>
+		</form>
+		</div>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Phone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+	</div>
+	
+	
+	<script>
+		angular.module("webappPerson", []).controller( "personController", function($scope, $http) {
+			$scope.reset = function() {
+					$scope.name = '';
+					$scope.address = '';
+					$scope.phone = '';
+				};
+			});
+	</script>
+	
+</body>
+</html>
